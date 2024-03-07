@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(LunarLib VERSION 1.0 LANGUAGES CXX)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -35,13 +37,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${ARCH_DIR}/$<CONFIG>/bin
 
 
 # Compiler flags common to all builds
-set(COMMON_FLAGS "-O2 -D_CRT_SECURE_NO_WARNINGS")
 if(MSVC)
-    # For MSVC, re-add the /MT flag or other MSVC-specific flags
-    list(APPEND COMMON_FLAGS "/MT")
-endif()
-if(BUILD_AS_DLL)
-    set(COMMON_FLAGS "${COMMON_FLAGS} -EHsc -LD -DNDEBUG")
+    set(COMMON_FLAGS "/W3" "/EHsc" "/D_CRT_SECURE_NO_WARNINGS")
+    # Add /MT only if BUILD_AS_DLL is OFF
+    if(NOT BUILD_AS_DLL)
+        list(APPEND COMMON_FLAGS "/MT")
+    endif()
+else()
+    set(COMMON_FLAGS "-Wall" "-Wextra" "-pedantic" "-O2" "-D_CRT_SECURE_NO_WARNINGS")
 endif()
 
 # Include directories
@@ -142,12 +145,6 @@ install(TARGETS ${LIBNAME}
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/ DESTINATION include)
 
 
-# Compiler and linker options for MSVC and GCC/Clang
-if(MSVC)
-    target_compile_options(${LIBNAME} PRIVATE "/W3" "/EHsc" "/D_CRT_SECURE_NO_WARNINGS" "/std:c++latest")
-else()
-    target_compile_options(${LIBNAME} PRIVATE "-Wall" "-Wextra" "-pedantic" ${COMMON_FLAGS})
-endif()
 
 # Note: For executable targets that require specific source files like `oblitest`,
 # you will need to list those source files explicitly in `add_executable()`.
