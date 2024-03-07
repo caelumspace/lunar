@@ -64,6 +64,9 @@
     <ClCompile Include="F:\common\Source_Code\lunar\src\mpc_fmt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\common\Source_Code\lunar\src\mpc_fmt2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\common\Source_Code\lunar\src\moid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
