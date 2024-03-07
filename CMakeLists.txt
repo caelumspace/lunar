@@ -72,6 +72,7 @@ set(LIB_SOURCES
     src/miscell.cpp
     src/mpc_code.cpp
     src/mpc_fmt.cpp
+    src/mpc_fmt2.cpp
     src/moid.cpp
     src/nanosecs.cpp
     src/nutation.cpp
@@ -116,7 +117,7 @@ target_compile_options(${LIBNAME} PRIVATE ${COMMON_FLAGS})
 add_executable(add_off src/add_off.c)
 target_link_libraries(add_off PRIVATE ${LIBNAME})
 
-add_executable(adestest src/adestest.cpp)
+add_executable(adestest src/adestest.cpp src/mpc_fmt2.cpp)
 target_link_libraries(adestest PRIVATE ${LIBNAME})
 
 # Specify additional link libraries for specific executables if needed

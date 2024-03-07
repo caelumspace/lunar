@@ -216,10 +216,12 @@ robust solution.        */
 
 double quick_strtod( const char *ibuff, const char **endptr)
 {
-   bool is_negative = false;
+   bool is_negative = false, got_a_digit = false;
    int integer_part = 0;
    double rval;
 
+   if( endptr)
+      *endptr = ibuff;
    while( *ibuff == ' ')
       ibuff++;
    if( *ibuff == '-')
@@ -229,6 +231,8 @@ double quick_strtod( const char *ibuff, const char **endptr)
       }
    else if( *ibuff == '+')
       ibuff++;
+   if( *ibuff >= '0' && *ibuff <= '9')
+      got_a_digit = true;
    while( *ibuff >= '0' && *ibuff <= '9')
       integer_part = integer_part * 10 + (*ibuff++ - '0');
    if( *ibuff != '.')
@@ -238,6 +242,9 @@ double quick_strtod( const char *ibuff, const char **endptr)
       int frac_part = 0, divisor = 1;
 
       ibuff++;
+      if( *ibuff < '0' || *ibuff > '9')
+         if( !got_a_digit)       /* it's not a number */
+            return( 0.);
       while( *ibuff >= '0' && *ibuff <= '9')
          {
          frac_part = frac_part * 10 + (*ibuff++ - '0');
@@ -736,7 +743,7 @@ int get_xxx_location_info( mpc_code_t *cinfo, const char *buff)
 
 #ifdef TEST_CODE
 
-static int text_search_and_replace( char *str, const char *oldstr,
+static int _text_search_and_replace( char *str, const char *oldstr,
                                      const char *newstr)
 {
    size_t ilen = strlen( str), rval = 0;
@@ -915,7 +922,7 @@ int main( const int argc, const char **argv)
                         code.lat, code.lon);
             }
          if( make_kml || show_link_for_this_line)
-            text_search_and_replace( buff, "&", "&amp;");
+            _text_search_and_replace( buff, "&", "&amp;");
          if( make_kml && code.planet == 3 && (code.lat || code.lon))
             {
             i = 0;

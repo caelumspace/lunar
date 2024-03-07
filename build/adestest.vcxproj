@@ -318,6 +318,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="F:\common\Source_Code\lunar\src\adestest.cpp" />
+    <ClCompile Include="F:\common\Source_Code\lunar\src\mpc_fmt2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="F:\common\Source_Code\lunar\build\ZERO_CHECK.vcxproj">

@@ -4,6 +4,9 @@
     <ClCompile Include="F:\common\Source_Code\lunar\src\adestest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\common\Source_Code\lunar\src\mpc_fmt2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="F:\common\Source_Code\lunar\CMakeLists.txt" />
