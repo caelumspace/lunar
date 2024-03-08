@@ -7,6 +7,8 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_definitions(-DON_LINE_VERSION)
+
 # Set the default value for CMAKE_INSTALL_PREFIX
 # This assumes 'lunar' is a sibling directory to the build directory
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/../lunar" CACHE PATH "Default install prefix" FORCE)
