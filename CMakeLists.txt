@@ -121,6 +121,8 @@ target_compile_options(${LIBNAME} PRIVATE ${COMMON_FLAGS})
 # Below is an example for a couple of demos, repeat the pattern for all required executables
 add_executable(add_off src/add_off.c)
 target_link_libraries(add_off PRIVATE ${LIBNAME})
+target_compile_definitions(add_off PRIVATE ON_LINE_VERSION)
+
 
 add_executable(adestest src/adestest.cpp src/mpc_fmt2.cpp)
 target_link_libraries(adestest PRIVATE ${LIBNAME})
