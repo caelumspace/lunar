@@ -7,8 +7,6 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_definitions(-DON_LINE_VERSION)
-
 # Set the default value for CMAKE_INSTALL_PREFIX
 # This assumes 'lunar' is a sibling directory to the build directory
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/../lunar" CACHE PATH "Default install prefix" FORCE)
@@ -119,18 +117,17 @@ target_compile_options(${LIBNAME} PRIVATE ${COMMON_FLAGS})
 
 # Demo executable targets
 # Below is an example for a couple of demos, repeat the pattern for all required executables
-add_executable(add_off src/add_off.c)
-target_link_libraries(add_off PRIVATE ${LIBNAME})
-target_compile_definitions(add_off PRIVATE ON_LINE_VERSION)
+# add_executable(add_off src/add_off.c)
+# target_link_libraries(add_off PRIVATE ${LIBNAME})
 
 
-add_executable(adestest src/adestest.cpp src/mpc_fmt2.cpp)
-target_link_libraries(adestest PRIVATE ${LIBNAME})
+# add_executable(adestest src/adestest.cpp src/mpc_fmt2.cpp)
+# target_link_libraries(adestest PRIVATE ${LIBNAME})
 
 # Specify additional link libraries for specific executables if needed
 # For example, if 'add_off' requires 'urlmon.lib' on Windows:
 if(WIN32)
-    target_link_libraries(add_off PRIVATE urlmon)
+    # target_link_libraries(add_off PRIVATE urlmon)
 endif()
 
 # Installation rules for the library and public headers
